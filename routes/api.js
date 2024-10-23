@@ -11,7 +11,7 @@ router.post("/auth/register", AuthController.register);
 router.post("/auth/login", AuthController.login);
 
 router.get("/profile", authMiddleware, ProfileController.index);
-// router.put("/profile/:id", authMiddleware, ProfileController.update);
+router.put("/profile/:id", authMiddleware, ProfileController.update);
 
 
 export default router;
