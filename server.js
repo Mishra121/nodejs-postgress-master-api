@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 import ApiRoutes from "./routes/api.js";
 app.use("/api", ApiRoutes);
 
-// * Jobs import
-// import "./jobs/index.js";
+// bullmq jobs queue 
+import "./jobs/index.js";
 
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));

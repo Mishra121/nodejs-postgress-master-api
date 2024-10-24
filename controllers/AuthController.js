@@ -3,9 +3,9 @@ import vine, { errors } from "@vinejs/vine";
 import { registerSchema, loginSchema } from "../validations/authValidation.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { sendEmail } from "../config/mailer.js";
+// import { sendEmail } from "../config/mailer.js";
 import logger from "../config/logger.js";
-// import { emailQueue, emailQueueName } from "../jobs/SendEmailJob.js";
+import { emailQueue, emailQueueName } from "../jobs/SendEmailJob.js";
 
 class AuthController {
   static async register(req, res) {
@@ -138,11 +138,11 @@ class AuthController {
         },
       ];
 
-    //   await emailQueue.add(emailQueueName, payload);
+      await emailQueue.add(emailQueueName, payload);
 
-      await sendEmail(payload[0].toEmail, payload[0].subject, payload[0].body);
+    //   await sendEmail(payload[0].toEmail, payload[0].subject, payload[0].body);
 
-      return res.json({ status: 200, message: "Job added successfully" });
+      return res.json({ status: 200, message: "Send email Job added successfully" });
     } catch (error) {
       logger.error({ type: "Email Error", body: error });
       return res
