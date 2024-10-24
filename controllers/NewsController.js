@@ -3,7 +3,7 @@ import { newsSchema } from "../validations/newsValidation.js";
 import { imageValidator, uploadImage, removeImage } from "../utils/helper.js";
 import prisma from "../DB/db.config.js";
 import NewsApiTransform from "../transform/newsApiTransform.js";
-// import redisCache from "../DB/redis.config.js";
+import redisCache from "../DB/redis.config.js";
 // import logger from "../config/logger.js";
 
 class NewsController {
@@ -82,10 +82,10 @@ class NewsController {
         data: payload,
       });
 
-    //   //   * remove cache
-    //   redisCache.del("/api/news", (err) => {
-    //     if (err) throw err;
-    //   });
+      //   * remove cache
+      redisCache.del("/api/news", (err) => {
+        if (err) throw err;
+      });
 
       return res.json({
         status: 200,
