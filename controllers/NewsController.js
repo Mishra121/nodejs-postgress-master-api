@@ -4,7 +4,7 @@ import { imageValidator, uploadImage, removeImage } from "../utils/helper.js";
 import prisma from "../DB/db.config.js";
 import NewsApiTransform from "../transform/newsApiTransform.js";
 import redisCache from "../DB/redis.config.js";
-// import logger from "../config/logger.js";
+import logger from "../config/logger.js";
 
 class NewsController {
   static async index(req, res) {
@@ -93,7 +93,7 @@ class NewsController {
         news,
       });
     } catch (error) {
-    //   logger.error(error);
+      logger.error(error);
       if (error instanceof errors.E_VALIDATION_ERROR) {
         return res.status(400).json({ errors: error.messages });
       } else {
