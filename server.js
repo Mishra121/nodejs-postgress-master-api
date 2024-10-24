@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.static("public"));
+app.use(express.static("public"));
 app.use(fileUpload());
 // app.use(helmet());
 // app.use(cors());
